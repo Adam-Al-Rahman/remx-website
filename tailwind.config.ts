@@ -7,6 +7,19 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    screens: {
+      sm: '480px',
+      md: '768px',
+      lg: '976px',
+      xl: '1440px',
+      sx: '1920px',
+    },
+    colors: {
+      'rmx-mirage': "#161B22",
+      'rmx-grey-charcoal': "#373E40",
+      'rmx-dune': "#342E37",
+      'rmx-baltic-sea': "#24292E",
+    },
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -15,6 +28,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/container-queries'), require("daisyui")],
 }
 export default config
