@@ -1,24 +1,65 @@
 import Image from "next/image";
+import Link from "next/link";
+
+import IconModel from "@/components/icons/model";
+import IconRemx from "@/components/icons/remx";
+import IconVersion from "@/components/icons/version";
+
 import forest from "#/public/forest.svg"
 import forestXL from "#/public/forest-xl.svg"
-import FileUpload from "./FileUpload";
 
-const Main = () => {
+
+import ImagesUpload from "@/components/FileUpload";
+import { repoInfo } from "@/app/layout";
+
+interface TypeMainProps {
+  className?: string
+}
+
+
+const Main = ({ className }: TypeMainProps) => {
+
+  let modelVersion;
+  if (repoInfo) {
+    modelVersion = repoInfo.map((data) => data);
+  }
+
+  console.log("Hello world");
+  console.log(modelVersion);
 
   return (
     <>
-      <div className='container w-3/4 gap-2 hidden rounded-sm md:rounded-lg bg-slate-50 bg-rmx-grey-charcoal px-2 py-2 lg:flex lg:flex-col'>
-        <div className="navbar bg-rmx-baltic-sea text-neutral-content lg:rounded-lg object-center w-full">
-          <button className="btn btn-ghost text-xl">HOME</button>
-          <button className="btn btn-ghost text-xl">MODEL</button>
+      <div className={`${className} container w-3/4 gap-2 rounded-sm md:rounded-lg  bg-rmx-grey-charcoal px-2 py-2 lg:flex lg:flex-col`}>
+        <div className="navbar bg-rmx-baltic-sea text-neutral-content lg:rounded-lg object-center w-full px-8 font-mono font-semibold">
+          <div className="text-sm breadcrumbs">
+            <ul>
+              <li>
+                <Link href="/">
+                  <IconRemx />
+                  <p className="ml-2">REMX</p>
+                </Link>
+              </li>
+              <li>
+                <Link href="http://localhost" target="_blank">
+                  <IconModel />
+                  <p className="ml-2">MODEL</p>
+                </Link>
+              </li>
+              <li>
+                {/* <Link href={`https://github.com/Adam-Al-Rahman/remx_yolo/releases/tag/${modelVersion[0]}`} target="_blank"> */}
+                <IconVersion />
+                {/* <p className="ml-2">{modelVersion[0][0]}</p> */}
+                {/* </Link> */}
+              </li>
+            </ul>
+          </div>
         </div>
-        <div className='hidden rounded-sm md:rounded-lg bg-slate-50 mb-auto bg-rmx-dune px-2 py-2 lg:flex items-center justify-center'>
+        <div className='rounded-sm md:rounded-lg mb-auto bg-rmx-dune px-2 py-2 lg:flex items-center justify-center'>
           <Image src={forest} className="xl:hidden" alt="forest animals" />
           <Image src={forestXL} className="hidden xl:block" alt="forest animals" />
         </div>
-        <div className='rounded-sm md:rounded-lg bg-slate-50  bg-rmx-dune px-2 py-2 my-2  items-center justify-center lg:flex h-full'>
-          <FileUpload />
-          {/* <input type="file" className="file-input file-input-bordered file-input-accent w-full max-w-xs" /> */}
+        <div className='rounded-sm md:rounded-lg   bg-rmx-dune px-2 py-2 my-2  items-center justify-center lg:flex h-full'>
+          {/* <ImagesUpload /> */}
         </div>
         <footer className="footer items-center p-4 bg-rmx-baltic-sea text-neutral-content lg:rounded-lg mt-auto">
           <aside className="items-center grid-flow-col">

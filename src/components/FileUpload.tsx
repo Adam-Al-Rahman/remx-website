@@ -1,49 +1,54 @@
-"use client";
+import { graphql } from '@/gql';
+import { Mutation, MutationReadFileArgs } from '@/gql/graphql';
+import makeClient from '@/lib/urql';
+import { registerUrql } from '@urql/next/rsc';
 
-import React, { useState } from 'react';
-import { gql, useMutation } from 'urql';
-import { graphql } from "@/gql";
-
-const UPLOAD_FILE = `
-  mutation UploadFile($file: Upload!){
-    readFile(file: $file) {
+const UploadFiles = graphql(/* GraphQL */ `
+  mutation fileUpload($file: Upload!){
+    readFile(file: $file){
       image
       maxConfidenceCoordinate
     }
   }
-`;
+`);
 
-const FileUpload = () => {
-  const [selectedFile, setSelectedFile] = useState();
-  const [result, uploadFile] = useMutation(UPLOAD_FILE);
+const ImagesUpload = async () => {
 
-  const { data, fetching, error } = result;
+  const { getClient } = registerUrql(makeClient);
+  const client = getClient;
 
-  const handleFileUpload = () => {
-    uploadFile({ file: selectedFile });
-  };
+  const result = await client().mutation<Mutation, MutationReadFileArgs>(UploadFiles, {
+    file: undefined
+  });
+  const { data, error } = result;
 
-  const handleFileChange = (event: { target: { files: any }; }) => {
-    setSelectedFile(event.target.files[0]);
+  const handleFileUpload = async (e: FormData) => {
+    // "use server";
+    const images = e.get("imagesInput");
+
+    if (!images) return;
+
+    const result = await client().mutation<Mutation, MutationReadFileArgs>(UploadFiles, { file: images });
+    const { data } = result;
+    console.log(data)
+
   };
 
   return (
-    <div>
-      {fetching && <p>Loading...</p>}
-
-      {error && <p>Oh no... {error.message}</p>}
-
-      {data && data.uploadFile ? (
-        <p>File uploaded to {data.uploadFile.filename}</p>
-      ) : (
-        <div>
-          <input type="file" onChange={handleFileChange} />
-
-          <button onClick={handleFileUpload}>Upload!</button>
-        </div>
-      )}
-    </div>
+    <>
+      <div>
+        <form>
+          <input type="file" accept="image/*" name='imagesInput' className="file-input file-input-ghost w-full max-w-xs" />
+          <button formAction={handleFileUpload} className='bg-rmx-grey-charcoal rounded-md p-2'>Upload</button>
+        </form>
+      </div>
+      <div>
+        {error && <p>{error.message}</p>}
+        {data && <pre>{JSON.stringify(data, null, 4)}</pre>}
+      </div>
+    </>
   );
-};
 
-export default FileUpload;
+}
+
+export default ImagesUpload;

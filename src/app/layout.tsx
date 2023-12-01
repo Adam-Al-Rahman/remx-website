@@ -1,13 +1,23 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+const inter = Inter({ subsets: ['latin'] })
 
 import '@/styles/globals.css'
-const inter = Inter({ subsets: ['latin'] })
+
+import fetchRepoInfo from '@/components/RepoInfo'
+import { TypeRepoInfo } from '@/components/RepoInfo';
+
+export let repoInfo: TypeRepoInfo[] | null = null;
+const remxYoloRepoInfo = async () => {
+  const data = await fetchRepoInfo('Adam-Al-Rahman', 'remx_yolo');
+  repoInfo = data;
+}
 
 export const metadata: Metadata = {
   title: 'RemX',
   description: 'An automated REM ( Random Encounter Model ) tool for animal abundance estimation using ML',
 }
+
 
 export default function RootLayout({
   children,
@@ -16,7 +26,6 @@ export default function RootLayout({
 }) {
   return (
     <>
-
       <body className={inter.className}>{children}</body>
     </>
   )
