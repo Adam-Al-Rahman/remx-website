@@ -18,6 +18,7 @@ const config: Config = {
         'rmx-dune': "#342E37",
         'rmx-baltic-sea': "#24292E",
         'rmx-white': '#a6adbb',
+        'rmx-tamahagane': '#484f51',
       },
     },
   },

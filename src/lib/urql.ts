@@ -1,13 +1,13 @@
 
 import { cacheExchange, createClient, fetchExchange } from '@urql/core';
+import { registerUrql } from '@urql/next/rsc';
 
 const makeClient = () => {
   return createClient({
     url: 'http://localhost/api',
     exchanges: [cacheExchange, fetchExchange],
-    fetchOptions: { cache: "no-store" },
+    fetchOptions: { cache: "no-store", next: { tags: ["api"] } },
   });
 };
 
-
-export default makeClient;
+export const { getClient } = registerUrql(makeClient);
