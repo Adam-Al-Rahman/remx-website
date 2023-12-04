@@ -19,6 +19,7 @@ const config: Config = {
         'rmx-baltic-sea': "#24292E",
         'rmx-white': '#a6adbb',
         'rmx-tamahagane': '#484f51',
+        'rmx-green': '#3cc95d',
       },
     },
   },

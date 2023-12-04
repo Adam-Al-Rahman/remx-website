@@ -5,7 +5,6 @@ export interface TypeResultData {
 
 }
 
-
 export interface TypeClassNameProps {
   className?: string
 }

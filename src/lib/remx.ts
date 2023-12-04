@@ -1,3 +1,4 @@
+
 export const INFORMATION = `
 Machine Learning or automatic learning is a scientific field,
 and more specifically a subcategory of artificial intelligence.
@@ -7,4 +8,3 @@ images, statistics...
 Anything that can be stored digitally can serve as data for Machine Learning.
 By detecting patterns in this data, algorithms learn and improve their
 performance in performing a specific task.`;
-

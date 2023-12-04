@@ -1,10 +1,11 @@
-
 import { NextPage } from 'next';
 
 import SideBar from '@/components/Sidebar'
 import Main from '@/components/Main'
-
+import { ResultDataProvider } from '@/hooks/useResultData';
 const Home: NextPage = () => {
+
+
   return (
     <>
       <div className="lg:hidden w-screen h-screen bg-rmx-mirage flex items-center justify-center  font-mono font-medium text-rmx-white ">
@@ -21,7 +22,9 @@ const Home: NextPage = () => {
         </div>
       </div>
       <div className='flex w-screen h-screen bg-rmx-mirage  gap-5 px-5 py-5 '>
+        {/* <ResultDataProvider> */}
         <SideBar className="hidden" />
+        {/* </ResultDataProvider> */}
         <Main className="hidden" />
       </div>
     </>

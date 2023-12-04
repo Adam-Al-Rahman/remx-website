@@ -7,21 +7,13 @@ import IconVersion from "@/components/icons/version";
 
 import forest from "#/public/forest.svg"
 
-
 import ImagesUpload from '@/components/FileUpload';
-import { repoInfo } from "@/app/layout";
+import { TypeClassNameProps } from "@/lib/types";
+import { modelVersion } from "@/app/layout";
 
-interface TypeMainProps {
-  className?: string
-}
-
+interface TypeMainProps extends TypeClassNameProps { }
 
 const Main = ({ className }: TypeMainProps) => {
-
-  let modelVersion;
-  if (repoInfo) {
-    modelVersion = repoInfo.map((data) => data);
-  }
 
   return (
     <>
@@ -42,10 +34,10 @@ const Main = ({ className }: TypeMainProps) => {
                 </Link>
               </li>
               <li>
-                {/* <Link href={`https://github.com/Adam-Al-Rahman/remx_yolo/releases/tag/${modelVersion[0]}`} target="_blank"> */}
-                <IconVersion />
-                {/* <p className="ml-2">{modelVersion[0][0]}</p> */}
-                {/* </Link> */}
+                <Link href={`https://github.com/Adam-Al-Rahman/remx_yolo/releases/tag/${modelVersion}`} target="_blank">
+                  <IconVersion />
+                  <p className="ml-2">{modelVersion}</p>
+                </Link>
               </li>
             </ul>
           </div>

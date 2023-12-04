@@ -12,6 +12,7 @@
 /* width */
 ::-webkit-scrollbar {
 width: 6px;
+height: 6px;
 }
 
 /* Track */
@@ -25,8 +26,14 @@ background: #a8b3cf;
 border-radius: 8px;
 }
 
+/* Corner */
+::-webkit-scrollbar-corner {
+  background: none; /* Set the corner background to none */
+}
 
 body {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   color: var(--foreground-rgb);
   background: var(--background);
 }

@@ -2,6 +2,7 @@ import { INFORMATION } from "@/lib/remx";
 import { TypeResultData } from "@/lib/types"
 
 
+
 interface TypeTableProps {
   resultData: (TypeResultData[] | undefined);
 }
@@ -9,19 +10,19 @@ interface TypeTableProps {
 export const Table = ({ resultData }: TypeTableProps) => {
 
   const rowSkeleton = (node: TypeResultData) => (
-    <tr>
+    <tr key={node.Image}>
       <td>{node.Image}</td>
-      <td>{node.MaxConfidenceCoordinate}</td>
+      <td>[{node.MaxConfidenceCoordinate.join(', ')}]</td>
     </tr>
   );
 
   return (
     <>
+
       <div className="overflow-x-auto ">
         <table className="table">
           <thead>
-            <tr>
-              <th></th>
+            <tr className="text-rmx-white font-mono font-semibold text-sm">
               <th>Image</th>
               <th>MaxConfidenceCoordinate</th>
             </tr>

@@ -9,13 +9,14 @@ export interface TypeRepoInfo {
   node_id?: string;
 }
 
+let lastFetchTime: number = 0;
+let cachedData: TypeRepoInfo[] | null = null;
+
 const fetchRepoInfo = async (username: string, repository: string): Promise<TypeRepoInfo[] | null> => {
   const currentTime = new Date().getTime();
   const oneHourInMilliseconds = 60 * 60 * 1000;
-  const lastFetchTime = localStorage.getItem('lastFetchTime');
-  const cachedData = JSON.parse(localStorage.getItem('modelInfo') || 'null');
 
-  if (!cachedData || !lastFetchTime || currentTime - parseInt(lastFetchTime) >= oneHourInMilliseconds) {
+  if (!cachedData || currentTime - lastFetchTime >= oneHourInMilliseconds) {
     try {
       const res = await fetch(`https://api.github.com/repos/${username}/${repository}/tags`, {
         cache: 'no-cache',
@@ -23,8 +24,8 @@ const fetchRepoInfo = async (username: string, repository: string): Promise<Type
 
       if (res.ok) {
         const datas: TypeRepoInfo[] = await res.json();
-        localStorage.setItem('modelInfo', JSON.stringify(datas));
-        localStorage.setItem('lastFetchTime', currentTime.toString());
+        cachedData = datas;
+        lastFetchTime = currentTime;
         return datas;
       } else {
         // Handle non-successful response
