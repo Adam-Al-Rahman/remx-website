@@ -1,4 +1,6 @@
 
+export const modelVersion = "v1.0.0";
+
 export const INFORMATION = `
 Machine Learning or automatic learning is a scientific field,
 and more specifically a subcategory of artificial intelligence.

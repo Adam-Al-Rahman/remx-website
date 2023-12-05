@@ -4,12 +4,10 @@ const inter = Inter({ subsets: ['latin'] })
 
 import '@/styles/globals.css'
 
-export const modelVersion = "v1.0.0";
 export const metadata: Metadata = {
   title: 'RemX',
   description: 'An automated REM ( Random Encounter Model ) tool for animal abundance estimation using ML',
 }
-
 
 export default function RootLayout({
   children,
@@ -17,8 +15,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <>
+    <html lang='en'>
       <body className={inter.className}>{children}</body>
-    </>
+    </html>
   )
 }

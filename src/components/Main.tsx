@@ -9,7 +9,7 @@ import forest from "#/public/forest.svg"
 
 import ImagesUpload from '@/components/FileUpload';
 import { TypeClassNameProps } from "@/lib/types";
-import { modelVersion } from "@/app/layout";
+import { modelVersion } from "@/lib/remx";
 
 interface TypeMainProps extends TypeClassNameProps { }
 
@@ -43,10 +43,10 @@ const Main = ({ className }: TypeMainProps) => {
           </div>
         </div>
         <div className="flex flex-1 overflow-auto flex-col gap-2">
-          <div className='rounded-sm h-4/6 md:rounded-lg mb-auto bg-rmx-dune px-2 py-2 items-center justify-center'>
-            <Image src={forest} className="object-cover h-full w-full rounded-md" alt="forest animals" />
+          <div className='rounded-sm md:rounded-lg mb-auto bg-rmx-dune px-2 py-2 items-center justify-center h-4/6'>
+            <Image priority={true} src={forest} className="object-cover h-full w-full rounded-md shrink" alt="forest animals" />
           </div>
-          <div className='rounded-sm md:rounded-lg  bg-rmx-dune items-center justify-center lg:flex h-full'>
+          <div className='rounded-sm md:rounded-lg  bg-rmx-dune items-center justify-center lg:flex h-96'>
             <ImagesUpload />
           </div>
         </div>

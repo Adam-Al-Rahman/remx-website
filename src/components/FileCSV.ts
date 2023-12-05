@@ -1,7 +1,10 @@
 "use client";
 
 
-import { TypeResultData } from "@/lib/types";
+type TypeResultData = {
+  Image: string;
+  MaxConfidenceCoordinate: number[] | string;
+};
 
 const convertToCSV = (data: TypeResultData[]): string => {
   if (data.length === 0) {
@@ -10,17 +13,22 @@ const convertToCSV = (data: TypeResultData[]): string => {
   }
 
   const separator = ',';
-  const headers = Object.keys(data[0]).join(separator);
+  const headers = 'Image,MaxConfidenceCoordinate';
 
-  const rows = data.map(obj =>
-    Object.values(obj)
-      .map(value => (value instanceof Date ? value.toISOString() : value))
-      .join(separator)
-  );
+  const rows = data.map(obj => {
 
-  console.log(`${headers}\n${rows.join('\n')}`);
+    let maxCC = obj.MaxConfidenceCoordinate;
+    if (Array.isArray(maxCC)) {
+      maxCC = maxCC.join(separator);
+    }
 
-  return `${headers}\n${rows.join('\n')}`;
+    return `"${obj.Image}","${maxCC}"`;
+  });
+
+  const csvContent = `${headers}\n${rows.join('\n')}`;
+  console.log(csvContent);
+
+  return csvContent;
 };
 
 export const downloadCSV = (data: TypeResultData[], fileName: string) => {

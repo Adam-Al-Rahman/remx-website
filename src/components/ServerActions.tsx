@@ -15,12 +15,12 @@ export const handleFileUpload = async (e: FormData) => {
 
   const client = getClient();
   const result = await client.mutation<Mutation, MutationReadFilesArgs>(UploadFiles, { files: images });
+  console.log(result);
   const { data, error } = result;
 
   revalidateTag("api");
 
   const resultData = data?.readFiles.map((node) => ({ Image: node.image, MaxConfidenceCoordinate: node.maxConfidenceCoordinate }));
-
   const filePath = `${process.cwd()}/public/result.json`;
 
   fs.writeFile(filePath, JSON.stringify(resultData), (err) => {
