@@ -3,8 +3,8 @@
 import { modelVersion } from "@/lib/remx";
 import { downloadCSV } from "@/components/FileCSV";
 
-import { promises as fs } from 'fs';
-import path from "path";
+// import { promises as fs } from 'fs';
+// import path from "path";
 
 // const DeleteResultJson = async () => {
 //   const resultPath = path.join(process.cwd() + '/public/result.json');

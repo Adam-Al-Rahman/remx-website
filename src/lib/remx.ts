@@ -1,3 +1,6 @@
+import { cookies } from "next/headers";
+
+
 
 export const modelVersion = "v1.0.0";
 
@@ -10,3 +13,4 @@ images, statistics...
 Anything that can be stored digitally can serve as data for Machine Learning.
 By detecting patterns in this data, algorithms learn and improve their
 performance in performing a specific task.`;
+
