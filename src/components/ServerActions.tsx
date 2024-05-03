@@ -28,7 +28,7 @@ export const handleFileUpload = async (prevState: any, formData: FormData) => {
 
     const oneDay = 24 * 60 * 60; // seconds
     const resultDataString = JSON.stringify(resultData);
-    cookies().set('resultData', resultDataString, { secure: true });
+    cookies().set('resultData', resultDataString, { secure: true, maxAge: oneDay });
 
     return { progress_status: 'ok', message: 'ok' };
 

@@ -1,16 +1,8 @@
 import { cookies } from "next/headers";
 
-
-
 export const modelVersion = "v1.0.0";
 
 export const INFORMATION = `
-Machine Learning or automatic learning is a scientific field,
-and more specifically a subcategory of artificial intelligence.
-t consists of letting algorithms discover “patterns”, namely
-recurring patterns, in data sets.This data can be numbers, words,
-images, statistics...
-Anything that can be stored digitally can serve as data for Machine Learning.
-By detecting patterns in this data, algorithms learn and improve their
-performance in performing a specific task.`;
-
+REMX is an automated REM(Random Encounter Model) tool for animal abundance estimation using machine learning.
+It take input as image(s) containing animal(s) and output the predicted coordinate of the animal in CSV which can be downloaded.
+`;
